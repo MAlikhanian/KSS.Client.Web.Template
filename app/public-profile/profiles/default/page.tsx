@@ -51,8 +51,8 @@ export default function ProfileDefaultPage() {
         if (!response.ok) {
           // Handle 401 Unauthorized - token expired, redirect to login
           if (response.status === 401) {
-            const { signOut } = await import('next-auth/react');
-            signOut({ callbackUrl: '/signin', redirect: true });
+            const { signOutToTenant } = await import('@/lib/auth-signout');
+            signOutToTenant();
             return;
           }
           
